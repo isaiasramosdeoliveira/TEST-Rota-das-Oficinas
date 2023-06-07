@@ -1,14 +1,26 @@
 import { valueOfNumbers } from "../numbers";
 
 export function verify(value: string) {
+    let res = 0;
     const dice = value.split('');
-    const res = valueOfNumbers.reduce((acc, value, index) => {
-        for(let i = 0; i < dice.length; i++ ){
-            if(dice[i] == valueOfNumbers[index].rom){
-                acc += value.value;
+    dice.forEach((valueDice, indexDice, arrayDice) => {
+        valueOfNumbers.forEach((valueNumbers, indexNumbers, arrayNumbers) => {
+            if (valueDice === valueNumbers.rom) {
+                const first = arrayNumbers.find(number => arrayDice[indexDice] === number.rom)!
+                const second = arrayNumbers.find(number => arrayDice[indexDice + 1] === number.rom)!
+                if(arrayNumbers.length == 1) res += first.value
+                if(second?.value != undefined){
+                    if (first?.value >= second?.value) {
+                        res += first.value
+                    } 
+                    if (first?.value < second?.value) {
+                        res -= first.value;
+                    }
+                } else {
+                    res += first.value;
+                }
             }
-        }
-        return acc
-    }, 0)
+        })
+    })
     return res
 }

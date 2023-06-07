@@ -3,7 +3,7 @@ import styled from "@emotion/styled";
 import { baseStylePage } from "../../global/base/BaseStylePage";
 import Button from "../../components/Button";
 import { BsArrowRight } from "react-icons/bs";
-import { isRoman } from "../../ts/roman/validators/isNumber";
+import { isRoman } from "../../ts/roman/validators/isRoman";
 import { clearCamp } from "../../ts/roman/validators/clearCamp";
 import { FcHighPriority } from "react-icons/fc";
 import { verify } from "../../ts/roman/validators/verify";
@@ -66,6 +66,7 @@ const RomanNumbers = () => {
   const handleVerify = (e: any, value: string) => {
     e.preventDefault();
     const res = verify(value);
+    if(!res) return
     if (res > 0 && res <= 3999) {
       setConversion(String(res));
     } else {
