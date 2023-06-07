@@ -1,10 +1,10 @@
-import { valueOfNumbers } from "../numbers";
+import { valueOfNumbers } from "./numbers";
 
 export function verify(value: string) {
     let res = 0;
     const dice = value.split('');
     dice.forEach((valueDice, indexDice, arrayDice) => {
-        valueOfNumbers.forEach((valueNumbers, indexNumbers, arrayNumbers) => {
+        valueOfNumbers.forEach((valueNumbers, _ , arrayNumbers) => {
             if (valueDice === valueNumbers.rom) {
                 const first = arrayNumbers.find(number => arrayDice[indexDice] === number.rom)!
                 const second = arrayNumbers.find(number => arrayDice[indexDice + 1] === number.rom)!
